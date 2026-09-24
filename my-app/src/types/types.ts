@@ -8,7 +8,7 @@ export interface TipoProduto {
 
 export type TipoProdutoJ = {
     id: string;
-    nome: string;
+    nome: string; 
     preco: number;
     estoque: number;
     avatar: string;

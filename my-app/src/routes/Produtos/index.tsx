@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { TipoProduto } from "../../types/types";
-import { listaProdutos } from "../../data/listaProdutos";
 import { Link } from "react-router";
 
 export default function Produtos() {

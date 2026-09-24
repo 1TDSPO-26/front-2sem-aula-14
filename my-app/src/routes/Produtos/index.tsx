@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import type { TipoProduto } from "../../types/types";
-import { listaProdutos } from "../../data/listaProdutos";
+import type { TipoProduto, TipoProdutoJ } from "../../types/types";
 import { Link } from "react-router";
 
 export default function Produtos() {
@@ -8,19 +7,39 @@ export default function Produtos() {
     document.title = "Produtos";
 
     //Criando o recipiente da lista de dados e tipando com o tipo de produto
-    const[produtos,setProdutos] = useState<TipoProduto[]>([]);
+    const [produtos, setProdutos] = useState<TipoProduto[]>([]);
 
-    useEffect( ()=>{
+    useEffect(() => {
         //Simulando a requisição para o backend
-        setProdutos(listaProdutos);
 
-    },[]);
+        const carregaProdutos = async ()=>{
 
-         for (let index = 0; index < produtos.length; index++) {
-            const element = produtos[index];
-            console.log(element);
-            
+            try {
+
+                const resposta = await fetch("http://localhost:3001/produtos");
+
+                if (!resposta.ok) {
+                    throw new Error('Erro na listagem de produtos: ${resposta.status} - ${resposta.statusText}')
+                }
+
+                const data: TipoProdutoJ[] = await resposta.json();
+                console.log(data);
+                setProdutos(data);
+
+            } catch (error) {
+                console.error(error);
+            }
         }
+
+        carregaProdutos();
+
+    }, []);
+
+    for (let index = 0; index < produtos.length; index++) {
+        const element = produtos[index];
+        console.log(element);
+
+    }
 
     return (
         <main style={{ padding: '20px' }}>
@@ -38,13 +57,13 @@ export default function Produtos() {
                     </tr>
                 </thead>
                 <tbody>
-                    {produtos.map( (p)=>(
+                    {produtos.map((p) => (
                         <tr key={p.id}>
                             <td>{p.id}</td>
                             <td>{p.nome}</td>
                             <td>{p.preco}</td>
-                            <td>{p.descricao}</td>
-                            <td><img src={p.avatar} alt={p.descricao} width={60} height={60} style={{ objectFit: 'cover' }}/></td>
+                            <td>{p.estoque}</td>
+                            <td><img src={p.avatar} alt={p.descricao} width={60} height={60} style={{ objectFit: 'cover' }} /></td>
                             <td><Link to={`/editar-produtos/${p.id}`}>Editar</Link></td>
                         </tr>
                     ))}
@@ -52,7 +71,7 @@ export default function Produtos() {
                 <tfoot>
                     <tr>
                         <td colSpan={6}>Quantidade de produtos - {produtos.length}</td>
-                    </tr>                    
+                    </tr>
                 </tfoot>
             </table>
 

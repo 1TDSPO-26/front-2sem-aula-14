@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { TipoProduto } from "../../types/types";
-import { listaProdutos } from "../../data/listaProdutos";
 import { Link } from "react-router";
 
 export default function Produtos() {
@@ -39,7 +38,7 @@ export default function Produtos() {
                             <td>{p.preco}</td>
                             <td>{p.descricao}</td>
                             <td><img src={p.avatar} alt={p.descricao} width={60} height={60} style={{ objectFit: 'cover' }} /></td>
-                            <td><Link to={`/editar-produtos/${p.id}`}></Link></td>
+                            <td><Link to={`/editar-produtos/${p.id}`}>Editar</Link></td>
                         </tr>
                     ))}
                 </tbody>

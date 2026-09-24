@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import type { TipoProduto } from "../../types/types";
-import { listaProdutos } from "../../data/listaProdutos";
+import type { TIpoProdutoJ } from "../../types/types";
 import { Link } from "react-router";
 
 export default function Produtos() {
@@ -9,11 +8,31 @@ export default function Produtos() {
   document.title = "Produtos";
 
   //Criando o recipiente da lista de dados e tipando com o tipo de produto
-  const[produtos, setProdutos] = useState<TipoProduto[]>([]);
+  const[produtos, setProdutos] = useState<TIpoProdutoJ[]>([]);
 
   useEffect( ()=>{
     //Simulando a requisição para o backend
-    setProdutos(listaProdutos)
+
+    const carregaProdutos = async () => {
+
+      try{
+
+        const resposta = await fetch("http://localhost:3001/produtos");
+
+        if(!resposta.ok){
+          throw new Error(`Erro na listagem de produtdos: ${resposta.status} - ${resposta.statusText}`)
+        }
+
+        const data:TIpoProdutoJ[] = await resposta.json();
+        console.log(data);
+        setProdutos(data);
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    carregaProdutos();
 
   },[]);
 
@@ -40,8 +59,8 @@ export default function Produtos() {
                   <td>{p.id}</td>
                   <td>{p.nome}</td>
                   <td>{p.preco}</td>
-                  <td>{p.descricao}</td>
-                  <td><img src={p.avatar} alt={p.descricao} width={60} height={60} style={{ objectFit: 'cover' }}/></td>
+                  <td>{p.estoque}</td>
+                  <td><img src={p.avatar} alt={p.nome} width={60} height={60} style={{ objectFit: 'cover' }}/></td>
                   <td><Link to={`/editar-produtos/${p.id}`}> Editar</Link></td>
                 </tr>
               ) )}

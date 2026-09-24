@@ -5,3 +5,12 @@ export interface TipoProduto {
   descricao: string;
   avatar: string;
 }
+
+export type TipoProdutoJson = {
+  id : string;
+  nome : string;
+  preco : number;
+  estoque : number;
+  avatar : string;
+}
+

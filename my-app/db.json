@@ -1,0 +1,7 @@
+{
+  "produtos": [
+    { "id": "1", "nome": "Notebook", "preco": 3500, "estoque": 10, "avatar" : "avatar1.png" },
+    { "id": "2", "nome": "Mouse", "preco": 120, "estoque": 25, "avatar" : "avatar2.png" },
+    { "id": "3", "nome": "Teclado", "preco": 110, "estoque": 8, "avatar" : "avatar3.png" }
+  ]
+}

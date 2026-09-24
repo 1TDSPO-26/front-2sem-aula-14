@@ -1,22 +1,28 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function Lampada() {
-    const [lampadaStateAcesa, setLampadaStateAcesa] = useState<boolean>(false)
 
-    function alternarUseState() {
-        if (!lampadaStateAcesa) {
-            setLampadaStateAcesa(true);
-        } else {
-            setLampadaStateAcesa(false);
+    
+    const [acesa, setAcesa] = useState<boolean>(false);
+
+    function alternaUseState(){
+
+        if (!acesa) {
+            setAcesa(true);
+        }else{
+            setAcesa(false);
         }
+
     }
 
-    return (
+
+  return (
     <div>
         <figure>
-            <img src={lampadaStateAcesa ? "/lampada.png" : "/lampada-apagada.png"} alt={lampadaStateAcesa ? "Lampada acesa!" : "Lampada apagada!"} width={150} />
+            <img src={acesa ? "/lampada-acesa.png":"/lampada-apagada.png"} alt={acesa ? "Lâmpada acesa!" : "Lâmpada apagada!"} width={150} />
+            <figcaption>{acesa ? "Lâmpada acesa!" : "Lâmpada apagada!"}</figcaption>
         </figure>
-        <button onClick={alternarUseState}>{lampadaStateAcesa ? "APAGAR" : "ACENDER"}</button>
+        <button onClick={alternaUseState}>{acesa ? "APAGAR" : "ACENDER"}</button>
     </div>
-    )
+  )
 }

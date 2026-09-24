@@ -11,7 +11,12 @@
   },
   "dependencies": {
     "react": "^19.2.8",
+<<<<<<< HEAD
     "react-dom": "^19.2.8"
+=======
+    "react-dom": "^19.2.8",
+    "react-router": "^8.3.1"
+>>>>>>> feature/exemplo-pf0670
   },
   "devDependencies": {
     "@types/node": "^24.13.3",

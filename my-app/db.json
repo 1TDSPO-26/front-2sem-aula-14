@@ -1,0 +1,25 @@
+{
+    "produtos": [
+        {
+            "id": "1",
+            "nome": "Notebook",
+            "preco": 3500,
+            "estoque": 10,
+             "avatar": "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=120&auto=format&fit=crop&q=80"
+        },
+        {
+            "id": "2",
+            "nome": "Mouse",
+            "preco": 120,
+            "estoque": 25,
+            "avatar": "https://images.unsplash.com/photo-1541560052-5e137f229371?w=120&auto=format&fit=crop&q=80"
+        },
+        {
+            "id": "3",
+            "nome": "Teclado",
+            "preco": 210,
+            "estoque": 8,
+            "avatar": "https://images.unsplash.com/photo-1628557044797-f21a177c37ec?w=120&auto=format&fit=crop&q=80"
+        }
+    ]
+}
